@@ -7,7 +7,7 @@
       }
     ],
     "routers":[{
-        "src": "/api/(.*)",
+        "src": "/(.*)",
         "dest":  "/index.js"
     }]
   }
