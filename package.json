@@ -28,6 +28,7 @@
     "pg": "^8.12.0",
     "session": "^0.1.0",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "vercel": "^37.2.1"
   }
 }
