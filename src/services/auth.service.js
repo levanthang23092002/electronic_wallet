@@ -11,7 +11,6 @@ const auth = {
                     console.log(error);
                     callback(error, null);
                 } else {
-                    console.log(results)
                     callback(null, results.rows);
                 }
             });
