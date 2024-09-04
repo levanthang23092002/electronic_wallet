@@ -11,7 +11,7 @@ exports.viewWallet = (req, res) => {
                 error: error,
             })
         } else {
-            if (results.length == 0) {
+            if (results == 0) {
                 res.status(400).json({
                     message: "Chưa Tạo ví thêm Thông tin cá nhân để tạo ví",
                     data: [],

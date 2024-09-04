@@ -56,7 +56,7 @@ exports.getInfo = (req, res) => {
 
             })
         }else{
-            if(results.length == 0){
+            if(results === 0){
                 res.status(400).json({
                     message: "bạn chưa thêm Thông tin ",
                     data: null,

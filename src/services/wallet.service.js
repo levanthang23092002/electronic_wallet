@@ -29,7 +29,10 @@ const wallet = {
                 if (error) {
                     callback(error, null);
                 } else {
-                    callback(null, results.rows[0]);
+                    if(results.rowCount == 0)
+                        callback(null, 0);
+                    else
+                        callback(null, results.rows[0]);
                 }
             });
         } catch (error) {
@@ -43,6 +46,9 @@ const wallet = {
                 if (error) {
                     callback(error, null);
                 } else {
+                    if(account.rowCount == 0){
+                        callback(null,null)
+                    }
                     const accountnumber = account.rows[0].accountnumber;
                     const balance = convertStringToNumber(account.rows[0].balance);
                     let transaction = `INSERT INTO transactions (user_id, type, amount, to_wallet_id, description) VALUES (${id}, 'deposit', $1,${accountnumber}, $2 ) RETURNING *`;
@@ -202,6 +208,9 @@ const wallet = {
                     if (error) {
                         callback(error.message, null);
                     } else {
+                        if(results.rowCount == 0){
+                            callback(null,null)
+                        }
                         const accFrom = results.rows[0].from_wallet_id;
                         const accTo = results.rows[0].to_wallet_id;
                         let accountFrom = `select * from wallet where accountnumber = '${accFrom}'`;
