@@ -31,11 +31,5 @@ const options = {
 
 const swaggerSpec = swaggerJsdoc(options);
 
-function setupSwagger(app) {
-  // Cung cấp Swagger UI tại đường dẫn /docs
-  app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-
-}
-
-module.exports = {setupSwagger, swaggerSpec};
+module.exports = { swaggerSpec};

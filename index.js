@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
 const session = require('express-session');
 const pool = require('./src/models/connect');
 const router = require('./src/routers/index.router');
@@ -34,14 +35,14 @@ app.use('/api', router);
 app.get('/swagger.json', (req, res) => {
   res.json(swaggerSpec);
 });
-
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
 
 const PORT = process.env.PORT || 3000;
-setupSwagger(app);
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
