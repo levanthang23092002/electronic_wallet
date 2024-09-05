@@ -26,7 +26,7 @@ const options = {
       },
     ],
   },
-  apis: ['../routers/*.js'], // Đường dẫn đến các file API của bạn
+  apis: ['./src/routers/*.js'], // Đường dẫn đến các file API của bạn
 };
 
 const swaggerSpec = swaggerJsdoc(options);
@@ -36,9 +36,7 @@ function setupSwagger(app) {
   app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   // Cung cấp tài liệu Swagger JSON tại đường dẫn /swagger.json
-  app.get('/swagger.json', (req, res) => {
-    res.json(swaggerSpec);
-  });
+
 }
 
-module.exports = {setupSwagger};
+module.exports = {setupSwagger, swaggerSpec};

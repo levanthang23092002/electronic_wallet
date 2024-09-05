@@ -4,7 +4,7 @@ const cors = require('cors');
 const session = require('express-session');
 const pool = require('./src/models/connect');
 const router = require('./src/routers/index.router');
-const { setupSwagger } = require('./src/config/swagger'); 
+const { setupSwagger ,swaggerSpec} = require('./src/config/swagger'); 
 require('./src/config/passportGoogle');
 const passport = require('passport');
 
@@ -31,7 +31,9 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use('/api', router);
-
+app.get('/swagger.json', (req, res) => {
+  res.json(swaggerSpec);
+});
 
 app.get('/', (req, res) => {
   res.send('Hello World');
