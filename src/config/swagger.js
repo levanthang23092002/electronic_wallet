@@ -26,7 +26,7 @@ const options = {
       },
     ],
   },
-  apis: ['./src/routers/*.js'], // Đường dẫn đến các file API của bạn
+  apis: ['../routers/*.js'], // Đường dẫn đến các file API của bạn
 };
 
 const swaggerSpec = swaggerJsdoc(options);
