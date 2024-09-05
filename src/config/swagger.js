@@ -1,5 +1,7 @@
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const path = require('path');
+const fs = require('fs');
 
 const options = {
   definition: {
@@ -24,18 +26,19 @@ const options = {
       },
     ],
   },
-  apis: ['./src/routers/*.js'], // Path to your API files
+  apis: ['./src/routers/*.js'], // Đường dẫn đến các file API của bạn
 };
 
 const swaggerSpec = swaggerJsdoc(options);
 
-function swaggerDocs(app, port) {
+function setupSwagger(app) {
+  // Cung cấp Swagger UI tại đường dẫn /docs
   app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+  // Cung cấp tài liệu Swagger JSON tại đường dẫn /swagger.json
   app.get('/swagger.json', (req, res) => {
     res.json(swaggerSpec);
   });
 }
 
-module.exports = {
-  swaggerDocs
-};
+module.exports = {setupSwagger};

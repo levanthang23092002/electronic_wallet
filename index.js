@@ -4,7 +4,7 @@ const cors = require('cors');
 const session = require('express-session');
 const pool = require('./src/models/connect');
 const router = require('./src/routers/index.router');
-const { swaggerSpec, swaggerDocs } = require('./src/config/swagger'); 
+const { setupSwagger } = require('./src/config/swagger'); 
 require('./src/config/passportGoogle');
 const passport = require('passport');
 
@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 
 
 const PORT = process.env.PORT || 3000;
-swaggerDocs(app, PORT);
+setupSwagger(app);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
