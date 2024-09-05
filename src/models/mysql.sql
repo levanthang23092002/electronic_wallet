@@ -16,7 +16,7 @@ CREATE TABLE users (
   id INT PRIMARY KEY,
   name VARCHAR(50),
   gender VARCHAR(20) CHECK (gender IN ('Male', 'Female', 'Other')),
-  phone VARCHAR(11) CHECK (phone ~ '^[0][0-9]{9}$'),
+  phone VARCHAR(11) CHECK (phone ~ '^[0][0-9]{9,10}$'),
   address VARCHAR(100),
   born DATE CHECK (born <= CURRENT_DATE - INTERVAL '18 years'),
   FOREIGN KEY (id) REFERENCES accounts(id) ON DELETE CASCADE
