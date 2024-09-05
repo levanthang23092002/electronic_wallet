@@ -4,7 +4,7 @@ const cors = require('cors');
 const session = require('express-session');
 const pool = require('./src/models/connect');
 const router = require('./src/routers/index.router');
-const { swaggerUi, swaggerSpec } = require('./src/config/swagger'); 
+const { swaggerSpec, swaggerDocs } = require('./src/config/swagger'); 
 require('./src/config/passportGoogle');
 const passport = require('passport');
 
@@ -31,13 +31,17 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use('/api', router);
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.get('/swagger.json', (req, res) => {
+  res.json(swaggerSpec);
+});
+
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
 
 const PORT = process.env.PORT || 3000;
+swaggerDocs(app, PORT);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

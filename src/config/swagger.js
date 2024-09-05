@@ -29,7 +29,12 @@ const options = {
 
 const swaggerSpec = swaggerJsdoc(options);
 
+function swaggerDocs(app, port) {
+  app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+}
+
 module.exports = {
   swaggerUi,
   swaggerSpec,
+  swaggerDocs
 };
