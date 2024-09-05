@@ -35,7 +35,6 @@ function setupSwagger(app) {
   // Cung cấp Swagger UI tại đường dẫn /docs
   app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-  // Cung cấp tài liệu Swagger JSON tại đường dẫn /swagger.json
 
 }
 
