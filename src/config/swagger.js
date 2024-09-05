@@ -24,20 +24,12 @@ const options = {
       },
     ],
   },
-  // looks for configuration in specified directories
-  apis: ['./src/routers/*.js'],
+  apis: ['./src/routers/*.js'], // Path to your API files
 };
 
 const swaggerSpec = swaggerJsdoc(options);
 
-function swaggerDocs(app, port) {
-  app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-  // Documentation in JSON format
-  app.get('/docs.json', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(swaggerSpec);
-  });
-}
-
-module.exports = swaggerDocs;
+module.exports = {
+  swaggerUi,
+  swaggerSpec,
+};

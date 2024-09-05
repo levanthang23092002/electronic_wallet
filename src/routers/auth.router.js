@@ -14,11 +14,10 @@ auth.get(
       req.token = accessToken;
       res.status(200).json({
         profile: profile,
-        accessToken,accessToken
+        accessToken, accessToken
       })
       next();
     })(req, res, next);
   }
 );
-
 module.exports = auth;
